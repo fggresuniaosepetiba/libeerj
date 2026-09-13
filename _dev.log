@@ -1,0 +1,10 @@
+   ▲ Next.js 15.5.25
+   - Local:        http://127.0.0.1:3007
+   - Network:      http://127.0.0.1:3007
+
+ ✓ Starting...
+ ✓ Ready in 8.3s
+ ○ Compiling /rankings ...
+ ✓ Compiled /rankings in 8s (658 modules)
+ GET /rankings 200 in 4087ms
+ GET /rankings 200 in 785ms
