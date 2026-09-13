@@ -185,8 +185,8 @@ export default function HomePage() {
 
               <figure className="join__quote">
                 <blockquote>
-                  "Nossa liga nasceu da rua e é para a rua: enquanto houver
-                  alegria para desfilar, haverá LIBEERJ defendendo cada bloco."
+                  &quot;Nossa liga nasceu da rua e é para a rua: enquanto houver
+                  alegria para desfilar, haverá LIBEERJ defendendo cada bloco.&quot;
                 </blockquote>
                 <figcaption>
                   <span className="join__signature">Gabriel Macedo</span>
