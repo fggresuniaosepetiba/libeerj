@@ -1,172 +1,48 @@
 import type { CarnivalBlock } from "@/lib/types";
 
 /**
- * DADOS DEMONSTRATIVOS
- * --------------------
- * Os 50 blocos abaixo são fictícios e servem para demonstrar o site com uma
- * massa realista de entidades. Diretoria, número de componentes e enredos são
- * placeholders claramente demonstrativos.
+ * BLOCOS FILIADOS
+ * ---------------
+ * Lista oficial informada pela presidência da LIBEERJ, na ordem de
+ * cadastro. A categoria de cada bloco ainda NÃO foi fornecida — por isso
+ * todos os blocos estão com `category: null`.
  *
- * Para carregar os dados oficiais, basta substituir este repositório pela sua
- * fonte real (API). A camada de serviço (src/lib/services/blocks.ts) é a única
- * porta de entrada dos componentes — nada de dados é importado em tela.
+ * Os campos de exibição (bairro, fundação e enredo) estão preenchidos
+ * com dados PROVISÓRIOS e fictícios para o site não ficar incompleto —
+ * devem ser substituídos pelos dados oficiais informados por cada bloco.
  */
-
-type Seed = [
-  slug: string,
-  name: string,
-  category: "embalo" | "enredo",
-  neighborhood: string,
-  foundedYear: number,
-  components: number,
-  instagram?: string,
-  slogan?: string,
-  description?: string,
-  logo?: string,
-  enredo?: string,
-  foundedDate?: string,
+export const BLOCKS_DATA: CarnivalBlock[] = [
+  { id: "deita-mas-nao-dorme", slug: "deita-mas-nao-dorme", name: "G.R.B.C. DEITA MAS NÃO DORME", category: null, neighborhood: "Rocha Miranda", foundedYear: 2006, enredo: "A vigília da folia", logo: "/assets/images/logos/deita-mas-nao-dorme.svg" },
+  { id: "uniao-de-sepetiba", slug: "uniao-de-sepetiba", name: "G.R.B.C. UNIÃO DE SEPETIBA", category: null, neighborhood: "Sepetiba", foundedYear: 2024, foundedDate: "2024-02-02", enredo: "Sabejé", logo: "/assets/images/blocos de enredo/logo-escola.jpeg" },
+  { id: "balanco-de-iraja", slug: "balanco-de-iraja", name: "A.C. BALANÇO DE IRAJÁ", category: null, neighborhood: "Irajá", foundedYear: 2006, enredo: "Balanço e samba no coração do subúrbio", logo: "/assets/images/logos/balanco-de-iraja.svg" },
+  { id: "se-beber-nao-caia", slug: "se-beber-nao-caia", name: "G.R.B.C. SE BEBER NÃO CAIA", category: null, neighborhood: "Campo Grande", foundedYear: 2015, enredo: "Quem bebe a fama, paga com samba", logo: "/assets/images/logos/se-beber-nao-caia.svg" },
+  { id: "aquilah", slug: "aquilah", name: "G.R.B.C. AQUILAH", category: null, neighborhood: "Madureira", foundedYear: 2008, enredo: "Aquilah: a força que vem das águas", logo: "/assets/images/logos/aquilah.svg" },
+  { id: "oba-oba-do-recreio", slug: "oba-oba-do-recreio", name: "G.R.B.C. OBA, OBA DO RECREIO", category: null, neighborhood: "Recreio dos Bandeirantes", foundedYear: 1998, enredo: "Oba, oba: as ondas do Recreio na avenida", logo: "/assets/images/logos/oba-oba-do-recreio.svg" },
+  { id: "arrastao-da-barra-de-guaratiba", slug: "arrastao-da-barra-de-guaratiba", name: "G.R.B.C. ARRASTÃO DA BARRA DE GUARATIBA", category: null, neighborhood: "Barra de Guaratiba", foundedYear: 1997, enredo: "O poder do arrastão", logo: "/assets/images/logos/arrastao-da-barra-de-guaratiba.svg" },
+  { id: "academicos-de-sao-gabriel", slug: "academicos-de-sao-gabriel", name: "G.R.B.C. ACADÊMICOS DE SÃO GABRIEL", category: null, neighborhood: "Cordovil", foundedYear: 2004, enredo: "São Gabriel anuncia a folia", logo: "/assets/images/logos/academicos-de-sao-gabriel.svg" },
+  { id: "mangueirinha", slug: "mangueirinha", name: "G.R.B.C. MANGUEIRINHA", category: null, neighborhood: "Vila Isabel", foundedYear: 2019, enredo: "Nas raízes do mangue, a flor do samba", logo: "/assets/images/logos/mangueirinha.svg" },
+  { id: "flor-da-primavera", slug: "flor-da-primavera", name: "G.R.B.C. FLOR DA PRIMAVERA", category: null, neighborhood: "Penha", foundedYear: 2012, enredo: "Flores que florescem na avenida", logo: "/assets/images/logos/flor-da-primavera.svg" },
+  { id: "academicos-do-vidigal", slug: "academicos-do-vidigal", name: "G.R.B.C. ACADÊMICOS DO VIDIGAL", category: null, neighborhood: "Vidigal", foundedYear: 2015, enredo: "O encontro do céu e do mar", logo: "/assets/images/logos/academicos-do-vidigal.svg" },
+  { id: "zimbaue", slug: "zimbaue", name: "G.R.B.C. ZIMBAUÊ", category: null, neighborhood: "Realengo", foundedYear: 2010, enredo: "Zimbauê, o ritmo que atravessou mares", logo: "/assets/images/logos/zimbaue.svg" },
+  { id: "xupa-mas-nao-baba", slug: "xupa-mas-nao-baba", name: "G.R.B.C. XUPA MAS NÃO BABA", category: null, neighborhood: "Madureira", foundedYear: 1973, enredo: "Tradição que a rua não esquece", logo: "/assets/images/logos/xupa-mas-nao-baba.svg" },
+  { id: "esperanca-de-nova-campinas", slug: "esperanca-de-nova-campinas", name: "G.R.B.C. ESPERANÇA DE NOVA CAMPINAS", category: null, neighborhood: "Nova Campinas", foundedYear: 1985, enredo: "Esperança que renasce a cada folia", logo: "/assets/images/logos/esperanca-de-nova-campinas.svg" },
+  { id: "urubu-bloco", slug: "urubu-bloco", name: "G.R.B.C. URUBU BLOCO", category: null, neighborhood: "Pavuna", foundedYear: 2006, enredo: "Urubu, a alma do samba", logo: "/assets/images/logos/urubu-bloco.svg" },
+  { id: "cortejo-carioca", slug: "cortejo-carioca", name: "G.R.B.C. CORTEJO CARIOCA", category: null, neighborhood: "Centro", foundedYear: 2020, enredo: "O cortejo que leva o Rio para a rua", logo: "/assets/images/logos/cortejo-carioca.svg" },
+  { id: "grilo-de-bangu", slug: "grilo-de-bangu", name: "G.R.B.C. GRILO DE BANGU", category: null, neighborhood: "Bangu", foundedYear: 1978, enredo: "O canto do grilo nos morros do subúrbio", logo: "/assets/images/logos/grilo-de-bangu.svg" },
+  { id: "do-china", slug: "do-china", name: "G.R.B.C. DO CHINA", category: null, neighborhood: "Tijuca", foundedYear: 2018, enredo: "Na China, os encantos da folia", logo: "/assets/images/logos/do-china.svg" },
+  { id: "academicos-do-vaz-lobo", slug: "academicos-do-vaz-lobo", name: "G.R.B.C. ACADÊMICOS DO VAZ LOBO", category: null, neighborhood: "Vaz Lobo", foundedYear: 2009, enredo: "Vaz Lobo, memórias em festa", logo: "/assets/images/logos/academicos-do-vaz-lobo.svg" },
+  { id: "tigre-imperial", slug: "tigre-imperial", name: "G.R.B.C. TIGRE IMPERIAL", category: null, neighborhood: "São Cristóvão", foundedYear: 1995, enredo: "O rugido do tigre na avenida", logo: "/assets/images/logos/tigre-imperial.svg" },
+  { id: "entre-amigos", slug: "entre-amigos", name: "G.R.B.C. ENTRE AMIGOS", category: null, neighborhood: "Ramos", foundedYear: 2014, enredo: "Entre amigos, o samba é a nossa casa", logo: "/assets/images/logos/entre-amigos.svg" },
+  { id: "do-magia", slug: "do-magia", name: "G.R.B.C. DO MAGIA", category: null, neighborhood: "Magé", foundedYear: 2021, enredo: "A magia que encanta o Rio", logo: "/assets/images/logos/do-magia.svg" },
+  { id: "unidos-do-jardim-do-amanha", slug: "unidos-do-jardim-do-amanha", name: "G.R.B.C. UNIDOS DO JARDIM DO AMANHÃ", category: null, neighborhood: "Jardim do Amanhã", foundedYear: 2017, enredo: "O jardim que floresce no amanhã", logo: "/assets/images/logos/unidos-do-jardim-do-amanha.svg" },
+  { id: "boca-miuda", slug: "boca-miuda", name: "G.R.B.C. BOCA MIÚDA", category: null, neighborhood: "Méier", foundedYear: 2011, enredo: "Boca miúda, coração gigante", logo: "/assets/images/logos/boca-miuda.svg" },
+  { id: "imperio-da-pedra", slug: "imperio-da-pedra", name: "G.R.B.C. IMPÉRIO DA PEDRA", category: null, neighborhood: "Cascadura", foundedYear: 1990, enredo: "Um império erguido sobre a pedra", logo: "/assets/images/logos/imperio-da-pedra.svg" },
+  { id: "dos-cascudos", slug: "dos-cascudos", name: "G.R.B.C. DOS CASCUDOS", category: null, neighborhood: "Vista Alegre", foundedYear: 1996, enredo: "A braveza que samba", logo: "/assets/images/logos/dos-cascudos.svg" },
+  { id: "unidos-do-caciquinho-de-inhoaiba", slug: "unidos-do-caciquinho-de-inhoaiba", name: "G.R.B.C. UNIDOS DO CACIQUINHO DE INHOAÍBA", category: null, neighborhood: "Inhoaíba", foundedYear: 1993, enredo: "O chefe grande do samba", logo: "/assets/images/logos/unidos-do-caciquinho-de-inhoaiba.svg" },
+  { id: "tropa-do-assombroso", slug: "tropa-do-assombroso", name: "G.R.B.C. TROPA DO ASSOMBROSO", category: null, neighborhood: "Piedade", foundedYear: 2007, enredo: "Os poetas da noite assombrosa", logo: "/assets/images/logos/tropa-do-assombroso.svg" },
+  { id: "amigos-da-nana", slug: "amigos-da-nana", name: "G.R.B.C. AMIGOS DA NANÁ", category: null, neighborhood: "Engenho de Dentro", foundedYear: 2013, enredo: "Naná e seus amigos na folia", logo: "/assets/images/logos/amigos-da-nana.svg" },
+  { id: "do-balde", slug: "do-balde", name: "G.R.B.C. DO BALDE", category: null, neighborhood: "Maré", foundedYear: 2009, enredo: "Um balde cheio de alegria", logo: "/assets/images/logos/do-balde.svg" },
+  { id: "boemia-das-alegrias", slug: "boemia-das-alegrias", name: "G.R.B.C. BOÊMIA DAS ALEGRIAS", category: null, neighborhood: "Lapa", foundedYear: 2002, enredo: "Boêmia, serenata e alegria", logo: "/assets/images/logos/boemia-das-alegrias.svg" },
 ];
 
-const firstNames = [
-  "Alice", "Bruno", "Caio", "Duda", "Érica", "Felipe", "Giovana", "Heitor",
-  "Íris", "João", "Karla", "Luiz", "Marta", "Nina", "Otávio", "Paula",
-  "Rafael", "Sofia", "Théo", "Valéria",
-];
-
-const lastTokens = [
-  "Embalo", "Enredo", "Folião", "Foliã", "Marchinha", "Batuke", "Frevo",
-  "Axé", "Samba", "Passista", "Cordão", "Tambor", "Surdo", "Agogô",
-  "Viola", "Estrela", "Coral", "Alegria", "Lapa", "Cidade", "Rio",
-];
-
-const seeds: Seed[] = [
-  // ---------------------------------------------------------------- Enredo
-  ["estrela-do-cais", "Estrela do Cais", "enredo", "Saúde", 1998, 320, "@estreladocais", "O brilho do porto num só coração", "Nascido nas antigas ruas do porto, conta as histórias da cidade que chega pelo mar."],
-  ["imperio-do-boi", "Império do Boi", "enredo", "Méier", 1994, 410, "@imperiodoboi", "A força que traz a primavera", "Traduz em samba enredo os mitos populares e as lendas das encostas cariocas."],
-  ["uniao-da-serra", "União da Serra", "enredo", "Santa Teresa", 1990, 350, "@uniaodaserra", "Do alto, vê-se o Rio inteiro", "Bloco de enredo das ladeiras, eterno contador das crônicas de Santa Teresa."],
-  ["coral-do-centro", "Coral do Centro", "enredo", "Centro", 2001, 280, "@coraldocentro", "A voz do coração da cidade", "Um coral que virou bloco e levou o samba de enredo para o coração financeiro do Rio."],
-  ["flor-de-graca", "Flor de Graça", "enredo", "Campo Grande", 1987, 460, "@flordegraca", "Florescendo no subúrbio", "Da Baixada cantada em verso e prosa, um enredo de resistência e alegria."],
-  ["tambor-de-ouro", "Tambor de Ouro", "enredo", "Madureira", 1995, 520, "@tambordeouro", "O ouro que sai do tambor", "Bateria pesada e alas de passistas que transformam a rua num grande desfile."],
-  ["azul-da-guia", "Azul da Guia", "enredo", "Ilha do Governador", 1992, 300, "@azuldaguia", "O azul que recebe quem chega", "Inspirado no mar da Guanabara, desfila as travessias e a memória da Ilha."],
-  ["rosa-dos-ventos", "Rosa dos Ventos", "enredo", "Bangu", 2003, 340, "@rosadosventos", "Toda rota chega ao samba", "Bloco de enredo que celebra as navegações, os mapas e os caminhos do povo."],
-  ["sol-da-mangueira", "Sol da Mangueira", "enredo", "Mangueira", 1989, 480, "@soldamangueira", "O sol que não se põe", "De raízes na Zona Norte, resiste com enredos sobre o cotidiano e a luta do morro."],
-  ["beija-flor-do-cais", "Beija-flor do Cais", "enredo", "Gamboa", 2006, 260, "@beijaflordocais", "Pequeno no tamanho, gigante na folia", "Bloco de enredo da área portuária, conhecido pela precisão das alas coreografadas."],
-  ["matriz-do-samba", "Matriz do Samba", "enredo", "Estácio", 1985, 550, "@matrizdosamba", "Onde o samba aprendeu a andar", "Homenagem perene ao berço do samba, com repertório de marchinhas e sambas históricos."],
-  ["lua-de-cristal", "Lua de Cristal", "enredo", "Tijuca", 2008, 300, "@luadecristal", "Clareia a noite de quem brinca", "Enredos de poesia, luz e encantaria, com figurinos inspirados na natureza."],
-  ["girasol-da-penha", "Girassol da Penha", "enredo", "Penha", 1997, 420, "@girasoldapenha", "Volta o sol, volta a alegria", "Famoso pelo sorteio de enredos que envolve toda a comunidade a cada ano."],
-  ["reino-da-primavera", "Reino da Primavera", "enredo", "Olaria", 1993, 380, "@reinodaprimavera", "Todo ano, um novo jeito de florescer", "Bloco de enredo que estreou no feriadão e virou referência de organização."],
-  ["vozes-do-samba", "Vozes do Samba", "enredo", "Caju", 1991, 310, "@vozesdosamba", "Cantamos o que a cidade cala", "Corais e puxadores que transformam a concentração num grande ensaio aberto."],
-  ["estrela-guia", "Estrela Guia", "enredo", "Ramos", 2000, 360, "@estrelaguia", "Quem segue, chega", "Bloco devoto das estrelas, com enredos que passeiam por navegações e constelações."],
-  ["princesa-da-lapa", "Princesa da Lapa", "enredo", "Lapa", 1988, 490, "@princesadalapa", "A boemia coroada", "Salões, arcos e serenatas: a Princesa desfila a história boêmia da cidade."],
-  ["grinalda-de-ouro", "Grinalda de Ouro", "enredo", "Benfica", 1996, 330, "@grinaldadeouro", "Casamento de samba com o povo", "Enredos sobre bodas, coroas e celebrações que unem a comunidade do bairro."],
-  ["orquestra-do-morro", "Orquestra do Morro", "enredo", "Falcão", 2010, 250, "@orquestradomorro", "Cada surdo é um instrumento da rua", "Formado por músicos de formação clássica e popular, une orquestra à bateria de rua."],
-  ["aurora-carioca", "Aurora Carioca", "enredo", "Catumbi", 1986, 470, "@auroracarioca", "O dia que nasce no samba", "Tradicionalíssimo, desfila antes do sol raiar com enredos sobre o amanhecer carioca."],
-  ["jardim-de-bodas", "Jardim de Bodas", "enredo", "Praça Seca", 2004, 290, "@jardimdebodas", "Onde o amor sempre floresce", "Enredos românticos e alas de casais que emocionam o público a cada desfile."],
-  ["estrela-do-mar", "Estrela do Mar", "enredo", "Zona Portuária", 2012, 240, "@estreladomar", "Azul, sal e samba", "Celebra a força das águas e a memória marinheira das ruas do porto."],
-  ["soldado-do-samba", "Soldado do Samba", "enredo", "Vila Kosmos", 1999, 350, "@soldadodosamba", "Em pé, firme e na cadência", "Disciplina de bateria e evolução de alas, um verdadeiro pelotão da folia."],
-  ["cidade-das-artes", "Cidade das Artes", "enredo", "Barra da Tijuca", 2015, 220, "@cidadedasartes", "A rua vira palco", "Bloco jovem que mistura samba enredo com artes visuais e teatro de rua."],
-  ["corte-do-amanha", "União de Sepetiba", "enredo", "Sepetiba", 2024, 310, "@uniaodesepetiba", undefined, undefined, "/assets/images/blocos de enredo/logo-escola.jpeg", "Sabejé", "2024-02-02"],
-
-  // ---------------------------------------------------------------- Embalo
-  ["o-fervo-da-lapa", "O Fervo da Lapa", "embalo", "Lapa", 2013, 620, "@ofervodalapa", "A Lapa conhece o nosso passo", "De marchinhas a sucessos atuais, agita os arcos da Lapa com repertório para todas as idades."],
-  ["empurra-que-pega", "Empurra que Pega", "embalo", "Centro", 2007, 540, "@empurraquepega", "Quando encosta, ninguém segura", "Bloco do centro que esgota as ruas no pré-Carnaval com batucada pesada e figurino marcante."],
-  ["batuque-de-santa", "Batuque de Santa", "embalo", "Santa Teresa", 2001, 380, "@batuquedesanta", "As ladeiras respondem no tambor", "Sobe e desce as ladeiras de Santa Teresa ao som de uma bateria criada em ensaios abertos."],
-  ["passo-de-mestre", "Passo de Mestre", "embalo", "Glória", 2016, 340, "@passodemestre", "Aprendeu no chão e ensina na rua", "Liderado por mestres de dança popular, transforma cada desfile numa aula de gingado aberta."],
-  ["sexta-de-samba", "Sexta de Samba", "embalo", "Catete", 2009, 300, "@sextadesamba", "A semana termina, a folia começa", "Bloco oficial da abertura dos festejos, famoso por receitas e marchinhas autorais."],
-  ["bloco-do-carmo", "Bloco do Carmo", "embalo", "Centro", 2011, 460, "@blocodocarmo", "Tradição que atravessa o tempo", "Honra as bandas históricas da Sé e do Carmo com repertório clássico e trompetes de rua."],
-  ["traca-formosa", "Traça Formosa", "embalo", "Bairro de Fátima", 2014, 380, "@tracaformosa", "Faz parte da obra da alegria", "De perfil irreverente, satiriza o cotidiano da cidade com marchinhas atuais criadas a cada ano."],
-  ["crioula-do-avelar", "Crioula do Avelar", "embalo", "Santa Teresa", 2010, 330, "@criouladoavelar", "Rainha da ladeira", "Bloco histórico da região, famoso pelo baile que antecede o desfile oficial."],
-  ["meu-bem-volta-depois", "Meu Bem Volta Depois", "embalo", "Flamengo", 2018, 420, "@meubemvoltadepois", "Vai, mas sempre retorna", "Repertório romântico e animado, o bloco do retorno que o público obriga a voltar."],
-  ["dia-de-rubra", "Dia de Rubra", "embalo", "Botafogo", 2019, 350, "@diaderubra", "Cores fortes, alegria inteira", "Celebrações temáticas anuais — cada edição homenageia uma cor e uma cultura."],
-  ["dona-rosa", "Dona Rosa", "embalo", "Tijuca", 2003, 510, "@donarosa", "Quem brinca, rejuvenesce", "Presta tributo às matriarcas da folia, com alas de famílias inteiras e carroçóis antecedendo a bateria."],
-  ["tricoteiras-do-samba", "Tricoteiras do Samba", "embalo", "Laranjeiras", 2020, 260, "@tricoteirasdosamba", "Trançamos o nosso caminho", "Bloco de confecção própria: cada integrante costura sua fantasia e tricota seu adereço."],
-  ["siri-da-gavea", "Siri da Gávea", "embalo", "Gávea", 2015, 310, "@siridagavea", "Anda de lado, mas não para", "Típico bloco universitário, anima o fim de tarde antes dos desfiles de sábado."],
-  ["pelo-amor-de-deus", "Pelo Amor de Deus", "embalo", "Urca", 2006, 290, "@peloamordedeus", "A rua pede socorro e a gente atende", "Bloco de fim de tarde às margens da Baía de Guanabara, com pôr do sol e muito samba."],
-  ["janelinha-de-ouro", "Janelinha de Ouro", "embalo", "Jardim Botânico", 2012, 240, "@janelinhadeouro", "Quem vê de fora, abre a janela", "Animação impecável e repertório elegante, bloco favorito de quem busca coreografia."],
-  ["bote-quente", "Bote Quente", "embalo", "Leblon", 2017, 360, "@botequente", "Servido na medida da alegria", "Samba no ponto, suingue no chão e um repertório que sempre cai bem."],
-  ["maré-alta", "Maré Alta", "embalo", "Ipanema", 2011, 480, "@marealta", "Quando o sol desce, a rua sobe", "Clássico da orla, atravessa Ipanema em desfile que mistura surfistas, famílias e passistas."],
-  ["bossa-no-tambor", "Bossa no Tambor", "embalo", "Copacabana", 2005, 440, "@bossanotambor", "Suave no balanço, firme no compasso", "Rendição musical à bossa e ao samba de canção, com arranjos suaves para o carnaval."],
-  ["jardim-de-inverno", "Jardim de Inverno", "embalo", "Humaitá", 2021, 240, "@jardimdeinverno", "Folia em qualquer estação", "Bloco que aposta em ensaios o ano inteiro e chega ao Carnaval afiado."],
-  ["pequena-africa", "Pequena África", "embalo", "Saúde", 2004, 450, "@pequenaafrica", "A memória negra em ritmo de festa", "Celebra a herança africana da zona portuária com tambores, ijexá e axé."],
-  ["coracao-da-pedra", "Coração da Pedra", "embalo", "Vidigal", 2013, 380, "@coracaodapedra", "Palpita no alto do morro", "Bloco de comunidade, desce o Vidigal carregando a mítica do samba de pé de morro."],
-  ["sol-da-rocinha", "Sol da Rocinha", "embalo", "Rocinha", 2016, 330, "@soldarocinha", "Clareia a vida de quem sobe", "Reposiciona a imagem das comunidades, com bateria formada por jovens da região."],
-  ["arrasa-centro", "Arrasa Centro", "embalo", "Largo da Carioca", 2022, 310, "@arrasacentro", "Trabalhador também samba", "Bloco pós-expediente que ocupa o centro nos finais de semana de pré-Carnaval."],
-  ["voo-livre", "Voo Livre", "embalo", "Barra da Tijuca", 2019, 270, "@voolivre", "A rua é o nosso território", "Perfil leve e família, desfila em horários diurnos com espaços acessíveis."],
-  ["estrelinha-da-cidade", "Estrelinha da Cidade", "embalo", "Centro", 2020, 290, "@estrelinhadacidade", "Pequena, brilhante e de todos", "Bloco dedicado à memória afetiva da cidade, com repertório de marchinhas eternas."],
-  ["sambaba-do-saenz", "Sambabá do Saenz", "embalo", "Tijuca", 2014, 340, "@sambabadosaenz", "Do Saenz à rua, um passo de cada vez", "Bloco da Tijuca que reúne vizinhos e famílias em desfiles tranquilos de fim de tarde."],
-];
-
-const namesOf = (index: number, offset: number) => {
-  const base = (index * 7 + offset * 13) % Math.max(firstNames.length, 1);
-  const last = (index * 5 + offset * 17) % Math.max(lastTokens.length, 1);
-  return `${firstNames[base]} ${lastTokens[last]}`;
-};
-
-const blurb = (category: "embalo" | "enredo", neighborhood: string): string =>
-  category === "enredo"
-    ? `Bloco de enredo com raízes em ${neighborhood}. Apresenta sambas autorais, alas organizadas e uma bateria que conduz o desfile com a força da tradição.`
-    : `Bloco de embalo que faz de ${neighborhood} o palco perfeito para a folia de rua. Repertório animado, ensaios abertos e alegria para todos os públicos.`;
-
-const pad2 = (n: number) => String(n).padStart(2, "0");
-
-/**
- * Tokens de tema/enredo usados como �oltimo recurso, quando o seed nǜo traz
- * slogan nem enredo pr��prio. Determin��stico: cada bloco pega o token na sua
- * posi��ǜo do ciclo, garantindo sempre um tema fict��cio completo.
- */
-const themeTokens: Array<{ enredo: string; tema: string }> = [
-  { enredo: "As cores que a cidade acende", tema: "O colorido que toma a rua" },
-  { enredo: "De todas as janelas, um s�", tema: "Balan��o de todas as janelas" },
-  { enredo: "O samba nǜo para no rel��gio", tema: "A rua marca seu pr��prio tempo" },
-  { enredo: "No passo de quem chega primeiro", tema: "A festa chega sem avisar" },
-  { enredo: "Sobre as ondas desse mar de gente", tema: "Mar de gente, mar de alegria" },
-  { enredo: "A mem��ria viva dos antigos quintais", tema: "Hist��ria que ainda samba" },
-  { enredo: "Um grito de cores contra o cinza", tema: "Alegria que vence o cinza" },
-  { enredo: "Nasce o dia, renasce a folia", tema: "Do amanhecer a meia-noite" },
-];
-
-/**
- * Data de fundação fictícia, determinística por seed — usada quando o seed
- * informa apenas o ano. Garante uma ficha de cartão completa para TODOS os
- * blocos sem exigir edição individual. A União de Sepetiba informa a data real
- * no seed e ela prevalece.
- */
-const foundedDateFor = (year: number, index: number): string => {
-  const month = ((index * 3) % 12) + 1;
-  const day = ((index * 7) % 27) + 1;
-  return `${year}-${pad2(month)}-${pad2(day)}`;
-};
-
-/**
- * Nome do tema/enredo inventado por bloco, derivado do slogan de cada seed.
- * O rótulo do cartão vira "Enredo" para enredo e "Tema" para embalo.
- */
-const themeFor = (slogan: string | undefined, category: "embalo" | "enredo", index: number): string => {
-  if (slogan) return slogan;
-  const base = themeTokens[index % themeTokens.length];
-  return category === "enredo" ? base.enredo : base.tema;
-};
-
-export const BLOCKS_DATA: CarnivalBlock[] = seeds.map((seed, i) => {
-  const [slug, name, category, neighborhood, foundedYear, components, instagram, slogan, description, logo, enredo, foundedDate] = seed;
-  return {
-    id: slug,
-    slug,
-    name,
-    category,
-    neighborhood,
-    foundedYear,
-    foundedDate: foundedDate ?? foundedDateFor(foundedYear, i),
-    president: namesOf(i, 0),
-    vicePresident: namesOf(i, 1),
-    carnivalDirector: namesOf(i, 2),
-    components,
-    instagram: instagram ?? `@${slug}`,
-    logo: logo ?? `/assets/images/logos/${slug}.svg`,
-    slogan: slogan,
-    description: description ?? blurb(category, neighborhood),
-    enredo: enredo ?? themeFor(slogan, category, i),
-  };
-});
-
-export const EXPECTED_BLOCKS = 50;
+export const EXPECTED_BLOCKS = BLOCKS_DATA.length;

@@ -71,13 +71,13 @@ export default async function RankingsPage({ searchParams }: { searchParams: Sea
                       Blocos de {category === "enredo" ? "Enredo" : "Embalo"}
                     </Badge>
                   </h2>
-                  <RankingTable ranking={annual} rows={homeService.rankingRows(annual)} />
+                  <RankingTable ranking={annual} rows={homeService.rankingRows(annual)} category={category} />
                   {overall && (
                     <div>
                       <p className="muted" style={{ margin: "18px 0 8px" }}>
                         <strong>Ranking geral histórico</strong> (acumulado)
                       </p>
-                      <RankingTable ranking={overall} rows={homeService.rankingRows(overall)} limit={5} />
+                      <RankingTable ranking={overall} rows={homeService.rankingRows(overall)} category={category} limit={5} />
                     </div>
                   )}
                 </div>

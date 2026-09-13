@@ -1,27 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { blocksService, blocksService as s } from "@/lib/services";
+import { blocksService } from "@/lib/services";
 import { BlockCard, EmptyState } from "@/components/ui";
 import { BlocosFilter } from "@/components/blocos/BlocosFilter";
-import type { BlockCategory } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Blocos",
-  description:
-    "Catálogo dos blocos filiados à LIBEERJ: blocos de embalo e enredo do Rio de Janeiro.",
+  description: "Catálogo dos blocos filiados à LIBEERJ.",
 };
-
-const CATEGORIES: Array<{ value: BlockCategory | "all"; label: string }> = [
-  { value: "all", label: "Todos" },
-  { value: "embalo", label: "Embalo" },
-  { value: "enredo", label: "Enredo" },
-];
 
 type SearchParams = Promise<{
   q?: string;
-  category?: string;
   neighborhood?: string;
-  sort?: string;
   page?: string;
 }>;
 
@@ -35,28 +25,23 @@ export default async function BlocosPage({ searchParams }: { searchParams: Searc
 
   const page = clampPage(sp.page);
   const q = sp.q ?? "";
-  const category = (sp.category === "embalo" || sp.category === "enredo" ? sp.category : "all") as BlockCategory | "all";
   const neighborhood = sp.neighborhood ?? "all";
-  const sort = sp.sort === "founded" || sp.sort === "components" ? sp.sort : "name";
 
   const result = blocksService.query({
     search: q,
-    category,
     neighborhood,
-    sort,
+    sort: "name",
     page,
     pageSize: 12,
   });
 
-  const neighborhoods = s.neighborhoods();
+  const neighborhoods = blocksService.neighborhoods();
 
   const hrefFor = (patch: Record<string, string | undefined>) => {
     const next = new URLSearchParams();
     for (const [key, value] of [
       ["q", q],
-      ["category", category === "all" ? undefined : category],
       ["neighborhood", neighborhood === "all" ? undefined : neighborhood],
-      ["sort", sort],
     ] as const) {
       if (value) next.set(key, value);
     }
@@ -78,21 +63,19 @@ export default async function BlocosPage({ searchParams }: { searchParams: Searc
           </nav>
           <h1>Blocos filiados</h1>
           <p>
-            {s.count()} blocos entre embalo e enredo, espalhados por todos os
-            cantos da cidade. Busque pelo nome, explore por bairro ou filtre por
-            categoria.
+            {blocksService.count()} blocos associados à LIBEERJ. As categorias
+            e as fichas completas serão publicadas pela presidência em breve.
           </p>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <BlocosFilter categories={CATEGORIES} neighborhoods={neighborhoods} />
+          <BlocosFilter neighborhoods={neighborhoods} />
 
           {result.items.length === 0 ? (
             <EmptyState>
-              Nenhum bloco encontrado para os filtros escolhidos. Ajuste a busca
-              ou limpe os filtros acima.
+              Nenhum bloco encontrado para a busca escolhida. Tente outro nome.
             </EmptyState>
           ) : (
             <>

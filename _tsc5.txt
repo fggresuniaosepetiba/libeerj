@@ -1,0 +1,4 @@
+EXIT=2
+src/app/rankings/page.tsx(74,20): error TS2741: Property 'category' is missing in type '{ ranking: Ranking; rows: { entry: RankingEntry; block?: CarnivalBlock | undefined; }[]; }' but required in type '{ ranking: Ranking; rows: RankRow[]; category: "enredo" | "embalo"; limit?: number | undefined; }'.
+src/app/rankings/page.tsx(80,24): error TS2741: Property 'category' is missing in type '{ ranking: Ranking; rows: { entry: RankingEntry; block?: CarnivalBlock | undefined; }[]; limit: number; }' but required in type '{ ranking: Ranking; rows: RankRow[]; category: "enredo" | "embalo"; limit?: number | undefined; }'.
+src/components/ui/RankingTabs.tsx(54,12): error TS2741: Property 'category' is missing in type '{ ranking: Ranking; rows: RankRow[]; limit: number; }' but required in type '{ ranking: Ranking; rows: RankRow[]; category: "enredo" | "embalo"; limit?: number | undefined; }'.

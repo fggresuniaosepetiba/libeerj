@@ -2,9 +2,9 @@ import Image from "next/image";
 import { SITE } from "@/lib/site";
 import { homeService } from "@/lib/services";
 import { eventsService } from "@/lib/services";
-import { CATEGORY_SHORT } from "@/lib/types";
+import { blocksService } from "@/lib/services";
+import { boardService } from "@/lib/services";
 import {
-  Badge,
   BlockCard,
   ButtonLink,
   EventCard,
@@ -12,14 +12,16 @@ import {
   SectionHead,
   Stat,
 } from "@/components/ui";
-import { PodiumRanking } from "@/components/ui/PodiumRanking";
+import { PreregistrationForm } from "@/components/forms/PreregistrationForm";
 
 export default function HomePage() {
-  const featured = homeService.featuredBlocks();
+  const filiados = blocksService.registered(6);
   const news = homeService.latestNews(3);
-  const events = homeService.upcomingEvents(4);
-  const rankings = homeService.activeRankings();
+  const events = homeService.upcomingEvents(6);
+  const count = blocksService.count();
   const upcomingCount = eventsService.upcoming().length;
+  const executive = boardService.executive()?.members.length ?? 0;
+  const boardGroups = boardService.groups();
 
   return (
     <>
@@ -45,8 +47,8 @@ export default function HomePage() {
           </p>
           <div className="hero__actions">
             <ButtonLink href="/blocos">Conheça os blocos</ButtonLink>
-            <ButtonLink href="/rankings" variant="ghost">
-              Ver rankings 2027
+            <ButtonLink href="/agenda" variant="ghost">
+              Ver agenda 2027
             </ButtonLink>
           </div>
         </div>
@@ -56,62 +58,33 @@ export default function HomePage() {
       <section className="section" aria-label="A Liga em números">
         <div className="container">
           <div className="stats">
-            <Stat value="50" label="blocos filiados" emphasis="+"/>
-            <Stat value="2" label="categorias: embalo e enredo" />
+            <Stat value={String(count)} label="blocos filiados" emphasis="+"/>
+            <Stat value={String(executive)} label="membros na diretoria executiva" />
             <Stat value={String(SITE.currentYear)} label="próximo desfile" />
             <Stat value={String(upcomingCount)} label="eventos na agenda do ano" />
           </div>
         </div>
       </section>
 
-      {/* Blocos em destaque */}
-      <section className="section section--sand" aria-labelledby="destacados-title">
+      {/* Blocos filiados */}
+      <section className="section section--sand" aria-labelledby="filiados-title">
         <div className="container">
           <SectionHead
             eyebrow="Blocos"
-            title="Blocos em destaque"
-            lede="Uma amostra da diversidade dos nossos filiados, do centro à orla."
-            action={{ href: "/blocos", label: "Ver todos os blocos" }}
+            title="Lista de blocos filiados"
+            lede="Conheça os blocos associados à LIBEERJ, na ordem de cadastro junto à liga."
+            action={{ href: "/blocos", label: "Ir para Blocos" }}
           />
           <div className="card-grid">
-            {featured.map((block) => (
+            {filiados.map((block) => (
               <BlockCard key={block.slug} block={block} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Rankings */}
-      <section className="section" aria-labelledby="rankings-title">
-        <div className="container">
-          <SectionHead
-            eyebrow="Rankings"
-            title="Ranking do Carnaval 2027"
-            lede="Apuração das categorias de embalo e enredo. Dados demonstrativos."
-            action={{ href: "/rankings", label: "Ir para rankings" }}
-          />
-
-          <div className="rank-duo">
-            {(["enredo", "embalo"] as const).map((category) => {
-              const ranking = rankings[category].find((r) => r.type === "annual");
-              if (!ranking) return null;
-              const rows = homeService.rankingRows(ranking);
-              return (
-                <PodiumRanking
-                  key={category}
-                  ranking={ranking}
-                  rows={rows}
-                  category={category}
-                  limit={6}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* Agenda */}
-      <section className="section section--sand" aria-labelledby="agenda-title">
+      <section className="section" aria-labelledby="agenda-title">
         <div className="container">
           <SectionHead
             eyebrow="Agenda"
@@ -128,7 +101,7 @@ export default function HomePage() {
       </section>
 
       {/* Notícias */}
-      <section className="section" aria-labelledby="noticias-title">
+      <section className="section section--sand" aria-labelledby="noticias-title">
         <div className="container">
           <SectionHead
             eyebrow="Notícias"
@@ -144,19 +117,101 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section section--navy" aria-labelledby="cta-title">
-        <div className="container center">
-          <h2 id="cta-title">Faça parte da folia</h2>
-          <p className="lead" style={{ color: "#dfe6f5" }}>
-            A LIBEERJ representa os blocos de embalo e enredo do Rio. Mega eventos,
-            projetos sociais e uma história que se escreve na rua.
-          </p>
-          <div className="hero__actions" style={{ justifyContent: "center" }}>
-            <ButtonLink href="/a-liga">Conheça a Liga</ButtonLink>
-            <ButtonLink href="/memoria" variant="ghost">
-              Nossa memória
-            </ButtonLink>
+      {/* Diretoria */}
+      <section className="section" aria-labelledby="diretoria-title">
+        <div className="container board-teaser">
+          <div className="board-teaser__intro">
+            <SectionHead
+              eyebrow="Instituição"
+              title="Diretoria"
+              lede="Uma equipe dedicada à organização, à representação e ao futuro dos blocos filiados."
+            />
+            <ButtonLink href="/diretoria">Conheça nossa Diretoria</ButtonLink>
+          </div>
+          <aside className="board-teaser__card" aria-label="Grupos da diretoria">
+            <h3>Estrutura dirigente</h3>
+            <ul>
+              {boardGroups.map((group) => (
+                <li key={group.id}>
+                  <span className="board-teaser__group">{group.title}</span>
+                  <span className="board-teaser__count">
+                    {group.members.length}{" "}
+                    {group.members.length === 1 ? "membro" : "membros"}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      {/* Faça parte da folia */}
+      <section className="section section--navy join" id="participar" aria-labelledby="cta-title">
+        <div className="container">
+          <div className="join__grid">
+            <div className="join__intro">
+              <span className="section-head__eyebrow">Participe</span>
+              <h2 id="cta-title">Faça parte da folia</h2>
+              <p className="lead" style={{ color: "#dfe6f5" }}>
+                A LIBEERJ representa os blocos de embalo e enredo do Rio. Mega
+                eventos, projetos sociais e uma história que se escreve na rua.
+              </p>
+
+              <div className="join__mv">
+                <div className="join__mv-item">
+                  <h3>Missão</h3>
+                  <p>
+                    Representar, organizar e valorizar os blocos de embalo e
+                    enredo do estado do Rio, mantendo o carnaval de rua
+                    acessível, democrático e seguro.
+                  </p>
+                </div>
+                <div className="join__mv-item">
+                  <h3>Visão</h3>
+                  <p>
+                    Ser a referência estadual de organização da folia de rua,
+                    com blocos fortes, calendário estável e uma folia cada vez
+                    mais plural.
+                  </p>
+                </div>
+                <div className="join__mv-item">
+                  <h3>Valores</h3>
+                  <p>
+                    Diversidade, tradição, autonomia, transparência e respeito
+                    à rua e ao folião.
+                  </p>
+                </div>
+              </div>
+
+              <figure className="join__quote">
+                <blockquote>
+                  "Nossa liga nasceu da rua e é para a rua: enquanto houver
+                  alegria para desfilar, haverá LIBEERJ defendendo cada bloco."
+                </blockquote>
+                <figcaption>
+                  <span className="join__signature">Gabriel Macedo</span>
+                  <span className="join__byline">
+                    {" "}
+                    — Presidente Administrativo da LIBEERJ
+                  </span>
+                </figcaption>
+              </figure>
+
+              <p className="muted" style={{ color: "#b9c4dd" }}>
+                Blocos interessados em se filiar, parceiros e voluntários podem
+                manifestar interesse ao lado — a diretoria responde cada
+                pré-inscrição pessoalmente.
+              </p>
+
+              <div className="hero__actions" style={{ justifyContent: "flex-start" }}>
+                <ButtonLink href="/a-liga">Conheça a Liga</ButtonLink>
+                <ButtonLink href="/memoria" variant="ghost">
+                  Nossa Memória
+                </ButtonLink>
+              </div>
+            </div>
+
+            <PreregistrationForm />
           </div>
         </div>
       </section>

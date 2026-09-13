@@ -3,12 +3,12 @@ import type {
   CarnivalBlock,
   Paginated,
 } from "@/lib/types";
-import { BLOCKS_DATA, EXPECTED_BLOCKS } from "@/lib/data/blocks";
+import { BLOCKS_DATA } from "@/lib/data/blocks";
 
 const sorters: Record<NonNullable<BlocksQuery["sort"]>, (a: CarnivalBlock, b: CarnivalBlock) => number> = {
   name: (a, b) => a.name.localeCompare(b.name, "pt-BR"),
-  founded: (a, b) => a.foundedYear - b.foundedYear || a.name.localeCompare(b.name, "pt-BR"),
-  components: (a, b) => b.components - a.components || a.name.localeCompare(b.name, "pt-BR"),
+  founded: (a, b) => (a.foundedYear ?? 0) - (b.foundedYear ?? 0) || a.name.localeCompare(b.name, "pt-BR"),
+  components: (a, b) => (a.components ?? 0) - (b.components ?? 0) || a.name.localeCompare(b.name, "pt-BR"),
 };
 
 const stableHash = (value: string): number => {
@@ -25,7 +25,7 @@ export const blocksRepo = {
   },
 
   count(): number {
-    return EXPECTED_BLOCKS;
+    return BLOCKS_DATA.length;
   },
 
   getBySlug(slug: string): CarnivalBlock | undefined {
@@ -36,12 +36,17 @@ export const blocksRepo = {
     return [...BLOCKS_DATA].sort(sorters.name);
   },
 
+  /** Os N primeiros blocos na ordem de cadastro junto à liga. */
+  registered(count = 6): CarnivalBlock[] {
+    return BLOCKS_DATA.slice(0, count);
+  },
+
   byCategory(category: "embalo" | "enredo"): CarnivalBlock[] {
     return BLOCKS_DATA.filter((b) => b.category === category);
   },
 
   neighborhoods(): string[] {
-    return [...new Set(BLOCKS_DATA.map((b) => b.neighborhood))].sort(
+    return [...new Set(BLOCKS_DATA.map((b) => b.neighborhood).filter((n): n is string => Boolean(n)))].sort(
       (a, b) => a.localeCompare(b, "pt-BR"),
     );
   },
@@ -75,7 +80,7 @@ export const blocksRepo = {
       if (!term) return true;
       return (
         b.name.toLowerCase().includes(term) ||
-        b.neighborhood.toLowerCase().includes(term) ||
+        (b.neighborhood ?? "").toLowerCase().includes(term) ||
         (b.description ?? "").toLowerCase().includes(term)
       );
     });

@@ -93,7 +93,7 @@ const overallEntries = (
 ): RankingEntry[] =>
   order.map((slug, i) => {
     const block = byId.get(slug);
-    const base = block ? block.foundedYear : 2000;
+    const base = block?.foundedYear ?? 2000;
     const accumulated = 2450 - i * 27 + ((base % 9) - 4);
     const variation = ((variantSeed ** 2 + i * 13) % 5) - 2;
     return {

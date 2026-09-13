@@ -7,7 +7,10 @@ const blocksFile = join(root, "src", "lib", "data", "blocks.ts");
 const outDir = join(root, "public", "assets", "images", "logos");
 
 const source = readFileSync(blocksFile, "utf8");
-const slugs = [...source.matchAll(/\["([a-z0-9-]+)"/g)].map((m) => m[1]);
+const slugs = [
+  ...source.matchAll(/slug:\s*"([a-z0-9-]+)"/g),
+  ...source.matchAll(/\["([a-z0-9-]+)"/g),
+].map((m) => m[1]);
 
 const paletteA = {
   bg1: "#001050",

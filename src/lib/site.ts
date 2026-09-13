@@ -16,15 +16,25 @@ export const NAV = [
   { label: "Início", href: "/" },
   { label: "A Liga", href: "/a-liga" },
   { label: "Blocos", href: "/blocos" },
-  { label: "Rankings", href: "/rankings" },
   { label: "Agenda", href: "/agenda" },
   { label: "Notícias", href: "/noticias" },
   { label: "Memória", href: "/memoria" },
 ] as const;
 
+export const FOOTER_NAV = [
+  { label: "Início", href: "/" },
+  { label: "A Liga", href: "/a-liga" },
+  { label: "Blocos", href: "/blocos" },
+  { label: "Agenda", href: "/agenda" },
+  { label: "Notícias", href: "/noticias" },
+  { label: "Nossa Memória", href: "/memoria" },
+  { label: "Diretoria", href: "/diretoria" },
+  { label: "Contato", href: "/#participar" },
+] as const;
+
 export const SOCIAL = {
+  whatsapp: "https://wa.me/552100000000",
   instagram: "https://instagram.com/libeerj",
-  facebook: "https://facebook.com/libeerj",
   youtube: "https://youtube.com/@libeerj",
 } as const;
 

@@ -2,21 +2,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { blocksService } from "@/lib/services";
+import { boardService } from "@/lib/services";
 import { ButtonLink, SectionHead, Stat } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "A Liga",
   description: `Conheça a ${SITE.fullName}: missão, valores, estrutura e como fazer parte.`,
 };
-
-const DIRECTORS = [
-  { name: "Alice Embalo", role: "Presidência" },
-  { name: "Bruno Enredo", role: "Vice-presidência" },
-  { name: "Caio Marchinha", role: "Direção de Carnaval" },
-  { name: "Duda Batuke", role: "Direção Técnica e Regulamento" },
-  { name: "Érica Foliã", role: "Direção Social e Comunidade" },
-  { name: "Felipe Cordão", role: "Memória e Acervo" },
-];
 
 const VALUES = [
   {
@@ -33,12 +25,13 @@ const VALUES = [
   },
   {
     title: "Organização",
-    text: "Regulamento claro, calendário estável e transparência na apuração dos rankings.",
+    text: "Regulamento claro, calendário estável e transparência administrativa.",
   },
 ];
 
 export default function ALigaPage() {
   const count = blocksService.count();
+  const executive = boardService.executive();
 
   return (
     <>
@@ -65,15 +58,15 @@ export default function ALigaPage() {
                 Nossa liga reúne hoje <strong>{count} blocos filiados</strong> —
                 pequenos e gigantes, antigos e novíssimos — e trabalha o ano
                 inteiro para que a rua esteja pronta quando o Carnaval chegar:
-                regulamento, apuração, agenda, comunicação e projetos sociais.
+                regulamento, agenda, comunicação e projetos sociais.
               </p>
             </div>
 
             <div className="stats">
               <Stat value={String(count)} label="blocos filiados" />
-              <Stat value="2" label="categorias de desfile" />
+              <Stat value={String(executive?.members.length ?? 0)} label="membros na diretoria executiva" />
               <Stat value={String(SITE.currentYear)} label="edição em destaque" />
-              <Stat value="310" label="anos somados de folia (est.)" />
+              <Stat value={String(boardService.groups().length)} label="grupos dirigentes" />
             </div>
           </div>
         </div>
@@ -96,22 +89,21 @@ export default function ALigaPage() {
             ))}
           </div>
 
-          <SectionHead eyebrow="Estrutura" title="Diretoria" />
+          <SectionHead eyebrow="Estrutura" title="Diretoria" lede={executive?.subtitle} />
           <div className="card-grid">
-            {DIRECTORS.map((person) => (
-              <div className="person-card" key={person.name}>
+            {executive?.members.map((member) => (
+              <div className="person-card" key={`${member.role}-${member.name}`}>
                 <span className="person-card__initials" aria-hidden>
-                  {person.name.split(" ").map((p) => p[0]).join("")}
+                  {member.name.split(" ").map((p) => p[0]).join("")}
                 </span>
-                <h3>{person.name}</h3>
-                <p className="muted">{person.role}</p>
+                <h3>{member.name}</h3>
+                <p className="muted">{member.role}</p>
               </div>
             ))}
           </div>
-          <p className="muted" style={{ marginTop: 16 }}>
-            <strong>Nota:</strong> diretoria demonstrativa, apenas para ilustrar a
-            estrutura institucional do site.
-          </p>
+          <div style={{ marginTop: 24 }}>
+            <ButtonLink href="/diretoria">Conheça toda a Diretoria</ButtonLink>
+          </div>
         </div>
       </section>
 
@@ -119,13 +111,14 @@ export default function ALigaPage() {
         <div className="container center">
           <h2 style={{ color: "var(--c-paper)" }}>Quer fazer parte?</h2>
           <p style={{ color: "#d6dff0", maxWidth: "60ch", marginInline: "auto" }}>
-            Blocos interessados em filiar-se podem entrar em contato com nossa
-            diretoria: {SITE.email}.
+            Blocos interessados em filiar-se podem manifestar interesse em nosso
+            formulário de pré-inscrição; a diretoria retorna cada contato
+            pessoalmente.
           </p>
           <div className="hero__actions" style={{ justifyContent: "center" }}>
-            <ButtonLink href="/blocos">Conhecer os blocos</ButtonLink>
-            <ButtonLink href="/agenda" variant="ghost">
-              Ver agenda
+            <ButtonLink href="/#participar">Manifestar interesse</ButtonLink>
+            <ButtonLink href="/blocos" variant="ghost">
+              Conhecer os blocos
             </ButtonLink>
           </div>
         </div>

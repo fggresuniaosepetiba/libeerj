@@ -3,9 +3,11 @@ import { eventsRepo } from "@/lib/repos/events.repo";
 import { newsRepo } from "@/lib/repos/news.repo";
 import { galleryRepo } from "@/lib/repos/gallery.repo";
 import { rankingsRepo } from "@/lib/repos/rankings.repo";
+import { boardRepo } from "@/lib/repos/board.repo";
 import type {
   BlockCategory,
   BlocksQuery,
+  BoardGroup,
   CarnivalBlock,
   CarnivalEvent,
   GalleryItem,
@@ -16,7 +18,7 @@ import type {
 } from "@/lib/types";
 import { SITE } from "@/lib/site";
 
-export type { BlocksQuery, CarnivalBlock, CarnivalEvent, GalleryItem, NewsItem, Paginated, Ranking, RankingEntry };
+export type { BlocksQuery, CarnivalBlock, CarnivalEvent, GalleryItem, NewsItem, Paginated, Ranking, RankingEntry, BoardGroup };
 
 const blockMap = () => new Map(blocksRepo.all().map((b) => [b.slug, b]));
 
@@ -43,8 +45,21 @@ export const blocksService = {
   featured(count?: number) {
     return blocksRepo.featured(count);
   },
+  /** Os primeiros blocos na ordem de cadastro junto à liga. */
+  registered(count = 6): CarnivalBlock[] {
+    return blocksRepo.registered(count);
+  },
   visual(category: "embalo" | "enredo") {
     return blocksRepo.byCategory(category).slice(0, 10);
+  },
+};
+
+export const boardService = {
+  groups(): BoardGroup[] {
+    return boardRepo.all();
+  },
+  executive(): BoardGroup | undefined {
+    return boardRepo.getById("executiva");
   },
 };
 

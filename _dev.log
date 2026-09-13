@@ -8,3 +8,18 @@
  ✓ Compiled /rankings in 8s (658 modules)
  GET /rankings 200 in 4087ms
  GET /rankings 200 in 785ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1236ms (658 modules)
+ GET / 200 in 3068ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1013ms (662 modules)
+ GET /assets/images/logos/mar%C3%A9-alta.svg 404 in 1540ms
+ ✓ Compiled in 1700ms (659 modules)
+ ✓ Compiled in 1143ms (666 modules)
+ ✓ Compiled in 1080ms (418 modules)
+ ✓ Compiled in 391ms (418 modules)
+ ✓ Compiled in 415ms (666 modules)
+ ✓ Compiled in 569ms (418 modules)
+ ✓ Compiled in 1237ms (666 modules)
+ ✓ Compiled in 1881ms (666 modules)
+ ✓ Compiled in 777ms (666 modules)

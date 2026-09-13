@@ -2,15 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import type { BlockCategory } from "@/lib/types";
 
-export function BlocosFilter({
-  categories,
-  neighborhoods,
-}: {
-  categories: Array<{ value: BlockCategory | "all"; label: string }>;
-  neighborhoods: string[];
-}) {
+export function BlocosFilter({ neighborhoods }: { neighborhoods: string[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -47,8 +40,6 @@ export function BlocosFilter({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearch]);
 
-  const category = searchParams.get("category") ?? "all";
-
   return (
     <div className="filter-bar">
       <div className="field" style={{ flex: "2 1 240px" }}>
@@ -57,27 +48,10 @@ export function BlocosFilter({
           id="blocos-search"
           className="input"
           type="search"
-          placeholder="Nome, bairro ou estema…"
+          placeholder="Buscar por nome…"
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
         />
-      </div>
-
-      <div className="field" style={{ flex: "0 1 auto" }}>
-        <span className="sr-only">Filtra categoria</span>
-        <div className="rank-tabs" role="group" aria-label="Filtrar por categoria" style={{ margin: 0 }}>
-          {categories.map((c) => (
-            <button
-              key={c.value}
-              type="button"
-              className={`tab${category === c.value ? " tab--active" : ""}`}
-              aria-pressed={category === c.value}
-              onClick={() => update({ category: c.value })}
-            >
-              {c.label}
-            </button>
-          ))}
-        </div>
       </div>
 
       <div className="field" style={{ flex: "0 1 180px" }}>
@@ -92,20 +66,6 @@ export function BlocosFilter({
           {neighborhoods.map((n) => (
             <option key={n} value={n}>{n}</option>
           ))}
-        </select>
-      </div>
-
-      <div className="field" style={{ flex: "0 1 150px" }}>
-        <label htmlFor="blocos-sort">Ordenar</label>
-        <select
-          id="blocos-sort"
-          className="select"
-          value={searchParams.get("sort") ?? "name"}
-          onChange={(e) => update({ sort: e.target.value })}
-        >
-          <option value="name">Nome (A–Z)</option>
-          <option value="founded">Mais antigos</option>
-          <option value="components">Maior público</option>
         </select>
       </div>
     </div>

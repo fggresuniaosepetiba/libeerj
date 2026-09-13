@@ -20,7 +20,8 @@ export function Badge({
   return <span className={`badge badge--${tone}`}>{children}</span>;
 }
 
-export function CategoryBadge({ category }: { category: BlockCategory }) {
+export function CategoryBadge({ category }: { category: BlockCategory | null }) {
+  if (!category) return null;
   const tone = category === "enredo" ? "enredo" : "embalo";
   return <Badge tone={tone}>{CATEGORY_SHORT[category]}</Badge>;
 }
@@ -91,7 +92,7 @@ export function Stat({
 }
 
 /* ---------- Block card ---------- */
-function formatFounded(block: CarnivalBlock): string {
+function formatFounded(block: CarnivalBlock): string | null {
   if (block.foundedDate) {
     const date = new Date(`${block.foundedDate}T12:00:00`);
     if (!Number.isNaN(date.getTime())) {
@@ -102,10 +103,11 @@ function formatFounded(block: CarnivalBlock): string {
       });
     }
   }
-  return String(block.foundedYear);
+  return block.foundedYear ? String(block.foundedYear) : null;
 }
 
 export function BlockCard({ block }: { block: CarnivalBlock }) {
+  const founded = formatFounded(block);
   return (
     <Link className="card card--link block-card" href={`/blocos/${block.slug}`}>
       <span className="block-card__logo">
@@ -113,22 +115,28 @@ export function BlockCard({ block }: { block: CarnivalBlock }) {
       </span>
       <h3>{block.name}</h3>
       <CategoryBadge category={block.category} />
-      <dl className="block-card__meta">
-        <div className="block-card__item">
-          <dt>Local</dt>
-          <dd>📍 {block.neighborhood}</dd>
-        </div>
-        <div className="block-card__item">
-          <dt>Fundação</dt>
-          <dd>{formatFounded(block)}</dd>
-        </div>
-        {block.enredo && (
-          <div className="block-card__item">
-            <dt>{block.category === "embalo" ? "Tema" : "Enredo"}</dt>
-            <dd className="block-card__enredo">{block.enredo}</dd>
-          </div>
-        )}
-      </dl>
+      {(block.neighborhood || founded || block.enredo) && (
+        <dl className="block-card__meta">
+          {block.neighborhood && (
+            <div className="block-card__item">
+              <dt>Local</dt>
+              <dd>{block.neighborhood}</dd>
+            </div>
+          )}
+          {founded && (
+            <div className="block-card__item">
+              <dt>Fundação</dt>
+              <dd>{founded}</dd>
+            </div>
+          )}
+          {block.enredo && (
+            <div className="block-card__item">
+              <dt>Enredo</dt>
+              <dd className="block-card__enredo">{block.enredo}</dd>
+            </div>
+          )}
+        </dl>
+      )}
     </Link>
   );
 }

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blocksService } from "@/lib/services";
-import { Badge, BlockCard, CategoryBadge, SectionHead } from "@/components/ui";
+import { Badge, BlockCard, SectionHead } from "@/components/ui";
 
 type Params = Promise<{ slug: string }>;
 
@@ -12,30 +12,27 @@ export async function generateMetadata({ params }: { params: Params }) {
   if (!block) return { title: "Bloco não encontrado" };
   return {
     title: block.name,
-    description: `${block.description ?? ""} ${block.category === "enredo" ? "Bloco de enredo" : "Bloco de embalo"} de ${block.neighborhood}.`,
+    description: `${block.name} — bloco filiado à LIBEERJ${block.neighborhood ? `, com atuação em ${block.neighborhood}.` : "."}`,
   };
 }
+
+const fallbackCover = "/assets/images/blocks/category-samba.jpg";
 
 export default async function BlockDetailPage({ params }: { params: Params }) {
   const { slug } = await params;
   const block = blocksService.getBySlug(slug);
   if (!block) notFound();
 
-  const cover =
-    block.category === "enredo"
-      ? "/assets/images/blocks/category-enredo.jpg"
-      : "/assets/images/blocks/category-embalo.jpg";
-
   const related = blocksService
-    .visual(block.category)
-    .filter((b) => b.slug !== block.slug)
+    .query({ pageSize: 12 })
+    .items.filter((b) => b.slug !== block.slug)
     .slice(0, 3);
 
   return (
     <>
       <section className="hero" style={{ minHeight: 380 }}>
         <div className="hero__media">
-          <Image src={cover} alt="" fill priority sizes="100vw" />
+          <Image src={fallbackCover} alt="" fill priority sizes="100vw" />
         </div>
         <div className="hero__scrim" aria-hidden />
         <div className="container hero__content">
@@ -44,7 +41,7 @@ export default async function BlockDetailPage({ params }: { params: Params }) {
             {block.name}
           </nav>
           <h1>{block.name}</h1>
-          {block.slogan && <p className="hero__lead">“{block.slogan}”</p>}
+          {block.description && <p className="hero__lead">{block.description}</p>}
         </div>
       </section>
 
@@ -54,9 +51,9 @@ export default async function BlockDetailPage({ params }: { params: Params }) {
             <span className="profile__logo">
               <Image src={block.logo} alt={`Logomarca do bloco ${block.name}`} width={104} height={104} />
             </span>
-            <CategoryBadge category={block.category} />
             <p className="credit" style={{ marginTop: 12 }}>
-              Fundado em {block.foundedYear} · {block.neighborhood}
+              {block.name}
+              {block.neighborhood ? ` · ${block.neighborhood}` : ""}
             </p>
             {block.instagram && (
               <a
@@ -71,38 +68,56 @@ export default async function BlockDetailPage({ params }: { params: Params }) {
           </aside>
 
           <div className="stack">
-            <p className="lead">{block.description}</p>
+            <p className="lead">
+              Bloco filiado à LIBEERJ. Ficha provisória em curadoria pela
+              presidência — os dados oficiais de cada bloco serão publicados em
+              breve.
+            </p>
 
             <dl className="ficha">
               <div className="ficha__item">
-                <dt>Diretoria — presidente</dt>
-                <dd>{block.president}</dd>
+                <dt>Categoria</dt>
+                <dd>A atribuir</dd>
               </div>
               <div className="ficha__item">
-                <dt>Vice-presidência</dt>
-                <dd>{block.vicePresident}</dd>
-              </div>
-              <div className="ficha__item">
-                <dt>Direção de Carnaval</dt>
-                <dd>{block.carnivalDirector}</dd>
-              </div>
-              <div className="ficha__item">
-                <dt>Bairro</dt>
-                <dd>{block.neighborhood}</dd>
+                <dt>Bairro / Local</dt>
+                <dd>{block.neighborhood ?? "A informar"}</dd>
               </div>
               <div className="ficha__item">
                 <dt>Fundação</dt>
-                <dd>{block.foundedYear}</dd>
+                <dd>
+                  {block.foundedDate
+                    ? new Date(`${block.foundedDate}T12:00:00`).toLocaleDateString("pt-BR")
+                    : block.foundedYear ?? "A informar"}
+                </dd>
               </div>
               <div className="ficha__item">
-                <dt>Componentes estimados</dt>
-                <dd>~{block.components}</dd>
+                <dt>Presidente</dt>
+                <dd>{block.president ?? "A informar"}</dd>
               </div>
+              <div className="ficha__item">
+                <dt>Vice-presidência</dt>
+                <dd>{block.vicePresident ?? "A informar"}</dd>
+              </div>
+              <div className="ficha__item">
+                <dt>Direção de Carnaval</dt>
+                <dd>{block.carnivalDirector ?? "A informar"}</dd>
+              </div>
+              <div className="ficha__item">
+                <dt>Componentes</dt>
+                <dd>{block.components ? `~${block.components}` : "A informar"}</dd>
+              </div>
+              {block.enredo && (
+                <div className="ficha__item">
+                  <dt>Enredo</dt>
+                  <dd>{block.enredo}</dd>
+                </div>
+              )}
             </dl>
 
             <p className="muted">
-              <Badge tone="muted">Demo</Badge> Dados de diretoria e público são
-              ilustrativos e não representam a entidade real.
+              <Badge tone="muted">Filiado</Badge> Informações oficiais em
+              atualização pela diretoria da liga.
             </p>
           </div>
         </div>
@@ -113,7 +128,7 @@ export default async function BlockDetailPage({ params }: { params: Params }) {
           <div className="container">
             <SectionHead
               eyebrow="Blocos"
-              title={`Também são ${block.category === "enredo" ? "de enredo" : "de embalo"}`}
+              title="Outros blocos filiados"
               action={{ href: "/blocos", label: "Ver todos" }}
             />
             <div className="card-grid">

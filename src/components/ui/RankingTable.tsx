@@ -5,6 +5,7 @@ import type { CarnivalBlock, Ranking, RankingEntry } from "@/lib/types";
 export interface RankRow {
   entry: RankingEntry;
   block?: CarnivalBlock;
+  senior?: boolean;
 }
 
 const variationLabel = (variation?: number) => {
@@ -14,16 +15,27 @@ const variationLabel = (variation?: number) => {
   return { text: "—", cls: "var-flat" };
 };
 
+
 export function RankingTable({
   ranking,
   rows,
-  limit = 10,
+  category,
+  limit = 6,
 }: {
   ranking: Ranking;
   rows: RankRow[];
+  category: "enredo" | "embalo";
   limit?: number;
 }) {
   const visible = rows.slice(0, limit);
+  const themeLabel = category === "enredo" ? "Enredo" : "Tema";
+
+  const medal = (position: number) => {
+    if (position === 1) return <span className="medal" aria-hidden="true">🥇</span>;
+    if (position === 2) return <span className="medal" aria-hidden="true">🥈</span>;
+    if (position === 3) return <span className="medal" aria-hidden="true">🥉</span>;
+    return null;
+  };
 
   return (
     <div className="rank-table-wrap">
@@ -31,32 +43,26 @@ export function RankingTable({
         <caption className="sr-only">{ranking.title}</caption>
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col" className="rank-th-pos">Colocação</th>
             <th scope="col">Bloco</th>
-            <th scope="col">Bairro</th>
-            <th scope="col">Pontos</th>
-            <th scope="col">Var.</th>
+            <th scope="col">{themeLabel}</th>
+            <th scope="col" className="rank-th-pts">Pontuação</th>
           </tr>
         </thead>
         <tbody>
           {visible.map(({ entry, block }) => {
             const lead = entry.position === 1;
-            const v = variationLabel(entry.variation);
             return (
               <tr key={`${ranking.id}-${entry.blockId}`}>
                 <td className={`rank-pos${lead ? " rank-pos--lead" : ""}`}>
-                  {entry.position}°
+                  {medal(entry.position)}
+                  {entry.position}º
                 </td>
                 <td>
                   <span className="rank-block">
                     {block && (
                       <span className="rank-logo">
-                        <Image
-                          src={block.logo}
-                          alt=""
-                          width={34}
-                          height={34}
-                        />
+                        <Image src={block.logo} alt="" width={34} height={34} />
                       </span>
                     )}
                     {block ? (
@@ -68,9 +74,12 @@ export function RankingTable({
                     )}
                   </span>
                 </td>
-                <td className="muted">{block?.neighborhood ?? "—"}</td>
-                <td className="rank-pts">{entry.points}</td>
-                <td className={v.cls}>{v.text}</td>
+                <td className={`rank-theme${lead ? " rank-theme--lead" : ""}`}>
+                  {block?.enredo ?? "—"}
+                </td>
+                <td className={`rank-pts${lead ? " rank-pts--lead" : ""}`}>
+                  <strong>{entry.points}</strong> pts
+                </td>
               </tr>
             );
           })}

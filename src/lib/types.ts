@@ -14,15 +14,19 @@ export interface CarnivalBlock {
   id: string;
   slug: string;
   name: string;
-  category: BlockCategory;
-  neighborhood: string;
-  foundedYear: number;
+  /**
+   * Categoria ainda não atribuída pela presidência. Mantida como `null`
+   * para preenchimento futuro: "enredo" | "embalo".
+   */
+  category: BlockCategory | null;
+  neighborhood?: string;
+  foundedYear?: number;
   /** Data completa de fundação quando disponível, em ISO, ex.: "2024-02-02" */
   foundedDate?: string;
-  president: string;
-  vicePresident: string;
-  carnivalDirector: string;
-  components: number;
+  president?: string;
+  vicePresident?: string;
+  carnivalDirector?: string;
+  components?: number;
   instagram?: string;
   logo: string;
   slogan?: string;
@@ -159,4 +163,18 @@ export interface YearOption {
   year: number;
   label: string;
   state: "live" | "upcoming" | "archive";
+}
+
+/** Membro da diretoria institucional da liga. */
+export interface BoardMember {
+  name: string;
+  role: string;
+}
+
+/** Grupo hierárquico da diretoria (Executiva, Diretoria, Conselho). */
+export interface BoardGroup {
+  id: string;
+  title: string;
+  subtitle?: string;
+  members: BoardMember[];
 }
