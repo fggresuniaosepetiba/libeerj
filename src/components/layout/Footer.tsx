@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FOOTER_NAV, SITE, SOCIAL } from "@/lib/site";
+import { FOOTER_INSTITUTIONAL, FOOTER_NAV, SITE, SOCIAL } from "@/lib/site";
 
 const socials = [
   {
@@ -69,6 +69,17 @@ export default function Footer() {
               {FOOTER_NAV.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Institucional">
+            <h3>Institucional</h3>
+            <ul className="site-footer__nav site-footer__nav--stack">
+              {FOOTER_INSTITUTIONAL.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href}>{link.label}</a>
                 </li>
               ))}
             </ul>

@@ -13,6 +13,7 @@ import {
   Stat,
 } from "@/components/ui";
 import { PreregistrationForm } from "@/components/forms/PreregistrationForm";
+import { DonationForm } from "@/components/forms/DonationForm";
 
 export default function HomePage() {
   const filiados = blocksService.registered(6);
@@ -213,6 +214,31 @@ export default function HomePage() {
 
             <PreregistrationForm />
           </div>
+        </div>
+      </section>
+
+      {/* Apoie a LIBEERJ */}
+      <section className="section support" id="apoio" aria-labelledby="support-title">
+        <div className="container support__grid">
+          <div className="support__intro">
+            <span className="section-head__eyebrow">Apoio</span>
+            <h2 id="support-title">Apoie a LIBEERJ</h2>
+            <p className="support__lead">
+              Ajude a levar o Carnaval de volta para a rua — onde a festa é do
+              povo.
+            </p>
+            <p className="support__text">
+              O Carnaval da LIBEERJ vive da força de quem o faz. Nossos blocos e
+              baterias caminham com plumas, suor e alegria, mas é a sua
+              contribuição que mantém essa cultura pulsando. Cada real doado
+              vira música, fantasia, dança e memória para milhares de foliões.
+            </p>
+            <p className="support__cta-line">
+              A rua é o nosso palco — e você pode ser parte dessa festa.
+            </p>
+          </div>
+
+          <DonationForm />
         </div>
       </section>
     </>

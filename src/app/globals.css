@@ -1299,7 +1299,7 @@ p {
 
 @media (min-width: 1080px) {
   .site-footer__grid {
-    grid-template-columns: 1.4fr 1fr 1fr 1.5fr;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1.5fr;
   }
 }
 
@@ -1643,6 +1643,14 @@ mark {
   gap: 8px 18px;
 }
 
+.site-footer ul.site-footer__nav--stack {
+  grid-template-columns: 1fr;
+}
+
+.site-footer ul.site-footer__nav--stack a {
+  white-space: nowrap;
+}
+
 .site-footer ul.site-footer__social-list {
   display: flex;
   align-items: center;
@@ -1980,4 +1988,570 @@ mark {
 .back-to-top:focus-visible {
   outline: 3px solid #f2c94c;
   outline-offset: 3px;
+}
+
+/* ---------- Support / Apoie a LIBEERJ ---------- */
+.support {
+  background:
+    linear-gradient(
+      175deg,
+      rgba(0, 16, 80, 0.95),
+      rgba(0, 24, 72, 0.88) 50%,
+      rgba(0, 16, 80, 0.94)
+    ),
+    url("/assets/images/hero/hero-street-crowd.jpg") center / cover no-repeat;
+  color: #dfe6f5;
+}
+
+.support__grid {
+  display: grid;
+  gap: 32px;
+  align-items: stretch;
+}
+
+@media (min-width: 900px) {
+  .support__grid {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+  }
+}
+
+.support__intro {
+  display: grid;
+  gap: 16px;
+  align-content: center;
+  color: #dfe6f5;
+}
+
+.support__intro h2 {
+  color: var(--c-paper);
+  margin-bottom: 0;
+}
+
+.support__lead {
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 700;
+  color: var(--c-paper);
+  line-height: 1.45;
+  max-width: 24ch;
+  margin: 0;
+}
+
+.support__text {
+  font-size: clamp(1.02rem, 1.5vw, 1.15rem);
+  color: #dbe4f4;
+  line-height: 1.7;
+  max-width: 46ch;
+  margin: 0;
+}
+
+.support__cta-line {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 700;
+  color: var(--c-gold-400);
+  margin: 0;
+}
+
+.support .donate {
+  width: 100%;
+  margin-top: 0;
+}
+
+/* ---------- Donation / Doação ---------- */
+.donate {
+  width: min(100% - 2 * var(--page-gutter, 20px), 620px);
+  margin-inline: auto;
+  margin-top: 34px;
+}
+
+.donate-card {
+  background: var(--c-paper);
+  color: var(--c-ink);
+  border: 3px solid var(--c-gold-600);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: 28px;
+  display: grid;
+  gap: 18px;
+}
+
+.donate-card h3 {
+  margin: 0;
+}
+
+.donate-card .muted {
+  margin: 0;
+}
+
+.donate__label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-muted);
+  margin-bottom: 6px;
+}
+
+.donate__doc,
+.donate__method-field {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.donate__doc-kind {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.donate__doc-kind button {
+  border: 1px solid var(--c-line);
+  background: var(--c-paper);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--c-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.donate__doc-kind button:hover {
+  border-color: var(--c-navy-600);
+  color: var(--c-navy-700);
+}
+
+.donate__doc-kind button[aria-pressed="true"] {
+  background: var(--c-navy-900);
+  border-color: var(--c-navy-900);
+  color: var(--c-paper);
+}
+
+.donate__amounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 560px) {
+  .donate__amounts {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.donate__amount {
+  border: 1.5px solid var(--c-line);
+  background: var(--c-paper);
+  border-radius: var(--radius-sm);
+  padding: 10px 6px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  font-family: var(--font-body);
+  color: var(--c-navy-700);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.donate__amount:hover {
+  border-color: var(--c-navy-600);
+  color: var(--c-navy-600);
+}
+
+.donate__amount[aria-pressed="true"] {
+  background: var(--c-navy-900);
+  border-color: var(--c-navy-900);
+  color: var(--c-paper);
+}
+
+.donate__amount--other {
+  border-style: dashed;
+  font-weight: 600;
+  color: var(--c-muted);
+}
+
+.donate__custom {
+  margin-top: 12px;
+}
+
+.donate__extenso {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--c-gold-600);
+  min-height: 1.3em;
+  margin: 4px 0 0;
+}
+
+.donate__method {
+  display: grid;
+  gap: 10px;
+}
+
+.donate__method-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1.5px solid var(--c-navy-600);
+  background: var(--c-sand);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.donate__method-opt input {
+  accent-color: var(--c-navy-900);
+  width: 17px;
+  height: 17px;
+  margin: 0;
+}
+
+.donate__method-opt span {
+  display: grid;
+  gap: 2px;
+}
+
+.donate__method-opt strong {
+  color: var(--c-navy-900);
+}
+
+.donate__method-note {
+  font-size: 0.82rem;
+  color: var(--c-muted);
+}
+
+.donate__result {
+  background: var(--c-sand);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  text-align: center;
+}
+
+.donate__result p {
+  margin: 0;
+  color: var(--c-ink);
+}
+
+.donate__qr {
+  width: 180px;
+  height: 180px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--c-paper);
+  border: 1px solid var(--c-line);
+}
+
+.donate__qr img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.donate__beneficiary {
+  font-weight: 600;
+}
+
+.donate__key {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  width: 100%;
+}
+
+.donate__key code {
+  width: 100%;
+  background: var(--c-paper);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  color: var(--c-ink);
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+/* ---------- A Liga: layout editorial ---------- */
+.editorial {
+  display: grid;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .editorial {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 48px;
+  }
+}
+
+.editorial--invert {
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .editorial--invert {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 48px;
+  }
+}
+
+.editorial__body {
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+.editorial__body h2 {
+  margin: 0;
+}
+
+.editorial__body p {
+  margin: 0;
+  max-width: 66ch;
+}
+
+.editorial__figure {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.editorial__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--c-navy-800);
+}
+
+.editorial__media img {
+  object-fit: cover;
+}
+
+.editorial__caption {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--c-muted);
+  max-width: 48ch;
+}
+
+.editorial__caption--navy {
+  color: #b9c4dd;
+}
+
+.section--navy .editorial__body p {
+  color: #d6dff0;
+}
+
+.editorial-quote {
+  margin: 6px 0 0;
+  padding: 20px 0 0 22px;
+  border-left: 3px solid var(--c-gold-400);
+}
+
+.editorial-quote p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  line-height: 1.5;
+  color: var(--c-paper);
+}
+
+/* ---------- A Liga: atuação ---------- */
+.act {
+  display: grid;
+  gap: 32px;
+}
+
+@media (min-width: 900px) {
+  .act {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: 56px;
+    align-items: start;
+  }
+}
+
+.act__intro {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+
+.act__intro h2 {
+  margin: 0;
+}
+
+.act-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  border-top: 1px solid var(--c-line);
+}
+
+.act-list li {
+  display: grid;
+  gap: 6px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.act-list h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.act-list p {
+  margin: 0;
+  color: var(--c-muted);
+  max-width: 72ch;
+}
+
+/* ---------- A Liga: blocos teaser ---------- */
+.blocks-teaser {
+  max-width: 62ch;
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+.blocks-teaser h2 {
+  margin: 0;
+}
+
+.blocks-teaser p {
+  margin: 0;
+}
+
+/* ---------- A Liga: pré-inscrição ---------- */
+.filiation-head {
+  max-width: 66ch;
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.filiation-head h2 {
+  margin: 0;
+}
+
+.filiation-head p {
+  margin: 0;
+  color: var(--c-muted);
+}
+
+.filiation {
+  background: var(--c-paper);
+  border: 1px solid var(--c-line);
+  border-top: 3px solid var(--c-gold-600);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: clamp(20px, 4vw, 36px);
+  display: grid;
+  gap: 28px;
+}
+
+.filiation__head {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.filiation__head h3 {
+  margin: 0;
+}
+
+.filiation__head p {
+  margin: 0;
+  max-width: 62ch;
+}
+
+.filiation-group {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.filiation-group__title {
+  width: 100%;
+  padding: 0 0 8px;
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--c-navy-600);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.filiation__row {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .filiation__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.filiation__row--full {
+  grid-template-columns: 1fr;
+}
+
+.filiation__field {
+  margin: 0;
+}
+
+.filiation textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.filiation__actions {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  border-top: 1px solid var(--c-line);
+  padding-top: 22px;
+}
+
+.filiation__summary {
+  margin: 0;
+  background: #fdebeb;
+  border: 1px solid #f5c6c0;
+  color: #7a1d12;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.filiation--done {
+  justify-items: start;
+}
+
+.filiation--done h3 {
+  margin: 0;
+}
+
+.filiation__done-text {
+  max-width: 62ch;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.filiation__done-text strong {
+  color: var(--c-navy-900);
 }
