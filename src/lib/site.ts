@@ -33,9 +33,10 @@ export const FOOTER_NAV = [
 ] as const;
 
 export const SOCIAL = {
-  whatsapp: "https://wa.me/552100000000",
-  instagram: "https://instagram.com/libeerj",
-  youtube: "https://youtube.com/@libeerj",
+  whatsapp:
+    "https://wa.me/5521965846376?text=Ol%C3%A1!%20%F0%9F%91%8B%F0%9F%8E%AD%0AVim%20pelo%20site%20oficial%20da%20LIBEERJ%20e%20gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Liga.%20%F0%9F%98%8A%0APoderiam%20me%20ajudar%3F",
+  instagram: "https://www.instagram.com/libeerj.oficial/",
+  youtube: "https://www.youtube.com/",
 } as const;
 
 export const FILE_CREDIT =
