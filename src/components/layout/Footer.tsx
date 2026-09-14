@@ -130,7 +130,13 @@ export default function Footer() {
           <span>
             © {year} {SITE.name} — Todos os direitos reservados.
           </span>
-          <span>Desenvolvido por Trinary Solutions Software House</span>
+          <a
+            href="https://www.trinarysolutions.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Desenvolvido por Trinary Solutions Software House</span>
+          </a>
         </div>
       </div>
     </footer>
