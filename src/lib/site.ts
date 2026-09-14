@@ -1,7 +1,7 @@
 export const SITE = {
   name: "LIBEERJ",
-  fullName: "Liga Independente dos Blocos de Embalo e Enredo do Rio de Janeiro",
-  shortFullName: "Liga Independente dos Blocos de Embalo e Enredo",
+  fullName: "Liga Independente dos Blocos de Enredo e Embalo do Estado do Rio de Janeiro",
+  shortFullName: "Liga Independente dos Blocos de Enredo e Embalo",
   slogan: "O Carnaval de rua organizado, representado e celebrado",
   city: "Rio de Janeiro",
   currentYear: 2027,
@@ -18,7 +18,7 @@ export const NAV = [
   { label: "Blocos", href: "/blocos" },
   { label: "Agenda", href: "/agenda" },
   { label: "Notícias", href: "/noticias" },
-  { label: "Memória", href: "/memoria" },
+  { label: "História do Carnaval", href: "/historia-do-carnaval" },
 ] as const;
 
 export const FOOTER_NAV = [
@@ -27,7 +27,7 @@ export const FOOTER_NAV = [
   { label: "Blocos", href: "/blocos" },
   { label: "Agenda", href: "/agenda" },
   { label: "Notícias", href: "/noticias" },
-  { label: "Nossa Memória", href: "/memoria" },
+  { label: "História do Carnaval", href: "/historia-do-carnaval" },
   { label: "Diretoria", href: "/diretoria" },
   { label: "Contato", href: "/#participar" },
 ] as const;

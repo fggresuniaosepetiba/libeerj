@@ -40,9 +40,9 @@ export const BLOCKS_DATA: CarnivalBlock[] = [
   { id: "dos-cascudos", slug: "dos-cascudos", name: "G.R.B.C. DOS CASCUDOS", category: null, neighborhood: "Vista Alegre", foundedYear: 1996, enredo: "A braveza que samba", logo: "/assets/images/logos/dos-cascudos.svg" },
   { id: "unidos-do-caciquinho-de-inhoaiba", slug: "unidos-do-caciquinho-de-inhoaiba", name: "G.R.B.C. UNIDOS DO CACIQUINHO DE INHOAÍBA", category: null, neighborhood: "Inhoaíba", foundedYear: 1993, enredo: "O chefe grande do samba", logo: "/assets/images/logos/unidos-do-caciquinho-de-inhoaiba.svg" },
   { id: "tropa-do-assombroso", slug: "tropa-do-assombroso", name: "G.R.B.C. TROPA DO ASSOMBROSO", category: null, neighborhood: "Piedade", foundedYear: 2007, enredo: "Os poetas da noite assombrosa", logo: "/assets/images/logos/tropa-do-assombroso.svg" },
-  { id: "amigos-da-nana", slug: "amigos-da-nana", name: "G.R.B.C. AMIGOS DA NANÁ", category: null, neighborhood: "Engenho de Dentro", foundedYear: 2013, enredo: "Naná e seus amigos na folia", logo: "/assets/images/logos/amigos-da-nana.svg" },
   { id: "do-balde", slug: "do-balde", name: "G.R.B.C. DO BALDE", category: null, neighborhood: "Maré", foundedYear: 2009, enredo: "Um balde cheio de alegria", logo: "/assets/images/logos/do-balde.svg" },
   { id: "boemia-das-alegrias", slug: "boemia-das-alegrias", name: "G.R.B.C. BOÊMIA DAS ALEGRIAS", category: null, neighborhood: "Lapa", foundedYear: 2002, enredo: "Boêmia, serenata e alegria", logo: "/assets/images/logos/boemia-das-alegrias.svg" },
+  { id: "amigos-da-nana", slug: "amigos-da-nana", name: "G.R.B.C. AMIGOS DA NANÁ", category: null, neighborhood: "Engenho de Dentro", foundedYear: 2013, enredo: "Naná e seus amigos na folia", logo: "/assets/images/logos/amigos-da-nana.svg" },
 ];
 
 export const EXPECTED_BLOCKS = BLOCKS_DATA.length;

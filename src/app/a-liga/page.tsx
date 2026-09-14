@@ -122,13 +122,22 @@ export default function ALigaPage() {
               institucional está em expansão, sempre no compromisso de não
               silenciar as ruas que deram origem à instituição.
             </p>
-            <blockquote className="editorial-quote">
-              <p>
-                A rua é o palco permanente da liga: a cada bloco, a cada
-                ensaio, a cada desfile, a LIBEERJ cumpre o propósito de defender
-                o carnaval de rua como patrimônio do povo.
-              </p>
-            </blockquote>
+            <figure>
+              <blockquote className="editorial-quote">
+                <p>
+                  A rua é o palco permanente da liga: a cada bloco, a cada
+                  ensaio, a cada desfile, a LIBEERJ cumpre o propósito de defender
+                  o carnaval de rua como patrimônio do povo.
+                </p>
+              </blockquote>
+              <figcaption>
+                <span className="join__signature">Gabriel Macedo</span>
+                <span className="join__byline">
+                  {" "}
+                  — Presidente Administrativo da LIBEERJ
+                </span>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -186,18 +195,19 @@ export default function ALigaPage() {
         </div>
       </section>
 
-      <section className="section section--navy" aria-labelledby="blocks-cta-title">
+      <section className="section section--navy" aria-labelledby="ranking-cta-title">
         <div className="container center">
-          <span className="section-head__eyebrow">Blocos filiados</span>
-          <h2 id="blocks-cta-title" style={{ color: "var(--c-paper)" }}>
-            Conheça a alegria de cada filiado
+          <span className="section-head__eyebrow">Ranking</span>
+          <h2 id="ranking-cta-title" style={{ color: "var(--c-paper)" }}>
+            A avaliação que valoriza cada filiado
           </h2>
           <p style={{ color: "#d6dff0", maxWidth: "60ch", marginInline: "auto" }}>
-            Do ensaio mais íntimo ao desfile gigante, cada bloco da LIBEERJ
-            escreve um capítulo próprio da folia carioca.
+            O Ranking da LIBEERJ reconhece desempenho, tradição e alegria nas
+            categorias de enredo e embalo, com critérios técnicos definidos pela
+            liga e divulgados a cada ciclo.
           </p>
           <div style={{ marginTop: 18 }}>
-            <ButtonLink href="/blocos">Conhecer os blocos</ButtonLink>
+            <ButtonLink href="#">Acompanhar o Ranking</ButtonLink>
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@
   "name": "libeerj-site",
   "version": "1.0.0",
   "private": true,
-  "description": "Site institucional da Liga Independente dos Blocos de Embalo e Enredo do Rio de Janeiro — LIBEERJ",
+  "description": "Site institucional da Liga Independente dos Blocos de Enredo e Embalo do Estado do Rio de Janeiro — LIBEERJ",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

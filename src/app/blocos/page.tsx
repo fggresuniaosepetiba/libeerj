@@ -30,7 +30,7 @@ export default async function BlocosPage({ searchParams }: { searchParams: Searc
   const result = blocksService.query({
     search: q,
     neighborhood,
-    sort: "name",
+    sort: "registered",
     page,
     pageSize: 12,
   });

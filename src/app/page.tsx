@@ -206,8 +206,8 @@ export default function HomePage() {
 
               <div className="hero__actions" style={{ justifyContent: "flex-start" }}>
                 <ButtonLink href="/a-liga">Conheça a Liga</ButtonLink>
-                <ButtonLink href="/memoria" variant="ghost">
-                  Nossa Memória
+                <ButtonLink href="/historia-do-carnaval" variant="ghost">
+                  História do Carnaval
                 </ButtonLink>
               </div>
             </div>

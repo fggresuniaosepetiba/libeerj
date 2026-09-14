@@ -46,6 +46,8 @@ const UFS = [
 
 const TODAY = new Date().toISOString().slice(0, 10);
 
+const PRESENTATION_LIMIT = 1000;
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const maskCnpj = (raw: string): string => {
@@ -109,12 +111,14 @@ function FilField({
   label,
   error,
   hint,
+  hintError,
   children,
 }: {
   id: string;
   label: string;
   error?: string;
   hint?: string;
+  hintError?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -126,7 +130,9 @@ function FilField({
           {error}
         </p>
       ) : hint ? (
-        <p className="field-hint">{hint}</p>
+        <p className={`field-hint${hintError ? " field-hint--error" : ""}`}>
+          {hint}
+        </p>
       ) : null}
     </div>
   );
@@ -509,11 +515,22 @@ export function FiliationForm() {
             id="fil-presentation"
             label="Apresentação do bloco / informações adicionais"
             error={errors.presentation}
+            hint={
+              form.presentation.length >= PRESENTATION_LIMIT
+                ? "Limite de 1000 caracteres atingido."
+                : `${PRESENTATION_LIMIT - form.presentation.length} caracteres restantes.`
+            }
+            hintError={form.presentation.length >= PRESENTATION_LIMIT}
           >
             <textarea
               id="fil-presentation"
-              className={fieldClass(errors.presentation)}
+              className={`${fieldClass(errors.presentation)}${
+                form.presentation.length >= PRESENTATION_LIMIT
+                  ? " input--error"
+                  : ""
+              }`}
               rows={5}
+              maxLength={PRESENTATION_LIMIT}
               placeholder="Conte brevemente a atuação, história ou outras informações relevantes do bloco para a análise da pré-inscrição."
               value={form.presentation}
               onChange={update("presentation")}

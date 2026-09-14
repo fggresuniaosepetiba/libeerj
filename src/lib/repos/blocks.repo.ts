@@ -9,6 +9,8 @@ const sorters: Record<NonNullable<BlocksQuery["sort"]>, (a: CarnivalBlock, b: Ca
   name: (a, b) => a.name.localeCompare(b.name, "pt-BR"),
   founded: (a, b) => (a.foundedYear ?? 0) - (b.foundedYear ?? 0) || a.name.localeCompare(b.name, "pt-BR"),
   components: (a, b) => (a.components ?? 0) - (b.components ?? 0) || a.name.localeCompare(b.name, "pt-BR"),
+  /** Ordem oficial de cadastro junto à liga (a ordem do array de dados). */
+  registered: () => 0,
 };
 
 const stableHash = (value: string): number => {

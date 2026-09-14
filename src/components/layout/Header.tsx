@@ -45,7 +45,7 @@ export default function Header() {
           </span>
           <span className="brand__text">
             <span className="brand__name">{SITE.name}</span>
-            <span className="brand__sub">Blocos de Embalo e Enredo</span>
+            <span className="brand__sub">Blocos de Enredo e Embalo</span>
           </span>
         </Link>
 

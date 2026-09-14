@@ -146,7 +146,7 @@ export interface BlocksQuery {
   search?: string;
   category?: BlockCategory | "all";
   neighborhood?: string;
-  sort?: "name" | "founded" | "components";
+  sort?: "name" | "founded" | "components" | "registered";
   page?: number;
   pageSize?: number;
 }

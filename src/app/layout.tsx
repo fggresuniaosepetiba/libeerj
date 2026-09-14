@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { BackToTop } from "@/components/ui/BackToTop";
+import { HashScroller } from "@/components/ui/HashScroller";
 import { SITE } from "@/lib/site";
 
 const greatVibes = Great_Vibes({
@@ -59,6 +60,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <BackToTop />
+        <HashScroller />
       </body>
     </html>
   );
